@@ -67,7 +67,7 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           source: "."
-          target: "/home/services/ams"
+          target: "/app/folder/path"
           host: ${{ secrets.PROD_HOST_NAME }}
           username: ${{ secrets.PROD_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
@@ -87,7 +87,7 @@ jobs:
           passphrase: ${{ secrets.PROD_PASSPHRASE }}
           script: |
             echo "Moving to deployment directory"
-            cd /home/services/ams
+            cd /app/folder/path
 
             echo "Clean previous containers and resources"
             docker compose down
