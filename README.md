@@ -90,7 +90,6 @@ jobs:
             cd /app/folder/path
 
             echo "Clean previous containers and resources"
-            docker compose down
             docker system prune -f
 
             echo "Rebuild and launch with no cache"
