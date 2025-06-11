@@ -16,28 +16,25 @@ Automating deployments ensures that your production releases are consistent, sec
 2. **Temporary Rename During Build**  
    Rename `docker-compose.prod.yaml` to `docker-compose.yaml` only during CI to avoid hardcoding or committing it.
 
-3. **Post-Copy Cleanup**  
-   Remove sensitive config files like `docker-compose.yaml` after copying and running, both locally and on the server.
-
-4. **Docker System Prune**  
+3. **Docker System Prune**  
    Run `docker system prune -f` before and after `docker compose up` to clean up unused images, networks, and volumes.
 
-5. **Secure Credential Handling**  
+4. **Secure Credential Handling**  
    Use GitHub Secrets to store SSH credentials instead of hardcoding them into the workflow.
 
-6. **No Cache Build**  
+5. **No Cache Build**  
    Use `--no-cache` during builds to ensure fresh layers are built, avoiding stale behavior.
 
-7. **Use `.dockerignore`**  
+6. **Use `.dockerignore`**  
    Prevent unnecessary files (like `.git`, `node_modules`, etc.) from being copied and bloating Docker images.
 
-8. **Use `docker compose down` Before Up**  
+7. **Use `docker compose down` Before Up**  
    Shuts down previous containers cleanly to avoid port conflicts and leftover states.
 
-9. **Logging Deployments**  
+8. **Logging Deployments**  
    Pipe the deployment output to `deploy.log` for traceability and debugging.
 
-10. **Use Latest Action Versions**  
+9. **Use Latest Action Versions**  
    Keep action versions updated (e.g., `actions/checkout@v4`) to use the latest security and feature updates.
 
 ---
@@ -73,9 +70,6 @@ jobs:
           key: ${{ secrets.PROD_SSH_KEY }}
           port: ${{ secrets.PROD_PORT }}
           passphrase: ${{ secrets.PROD_PASSPHRASE }}
-
-      - name: Cleanup local compose file (security hygiene)
-        run: rm -f docker-compose.yaml
 
       - name: SSH into server and deploy
         uses: appleboy/ssh-action@master
