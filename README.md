@@ -2,6 +2,10 @@
 
 Automating deployments ensures that your production releases are consistent, secure, and fast. In this blog, we’ll walk through a GitHub Actions workflow that deploys a Dockerized application to a remote server, with several key **DevOps best practices**.
 
+
+> ✅ **Note**: This process is designed for applications you want to **deploy and run as containers on a virtual machine (VM)**.  
+> The app will be copied to the VM, built using Docker Compose, and then run as a containerized service on that machine.
+
 ---
 
 ##  Best Practices Implemented
