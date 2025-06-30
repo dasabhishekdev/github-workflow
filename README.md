@@ -83,9 +83,6 @@ jobs:
             echo "Moving to deployment directory"
             cd /app/folder/path
 
-            echo "Clean previous containers and resources"
-            docker system prune -f
-
             echo "Rebuild and launch with no cache"
             docker compose build --no-cache
             docker compose up -d > deploy.log 2>&1
